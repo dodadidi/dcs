@@ -1,0 +1,22 @@
+[
+    { 
+        "id": 1, 
+        "date": "01.01.2021", 
+        "driver": "John Doe", 
+        "city": "Tel Aviv" 
+    },
+    
+    { 
+        "id": 2, 
+        "date": "05.01.2021", 
+        "driver": "John Doe", 
+        "city": "Haifa" 
+    },    
+    
+    { 
+        "id": 3, 
+        "date": "06.01.2021", 
+        "driver": "John Doe", 
+        "city": "Jerusalem" 
+    }
+]
