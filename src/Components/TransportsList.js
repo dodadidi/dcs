@@ -14,11 +14,10 @@ import Transport from './Transport';
 class TransportsList extends Component {
     constructor(props){
         super(props);
-        
         this.componentDidMount = this.componentDidMount.bind(this);
         this.eachTransport = this.eachTransport.bind(this);
         this.update = this.update.bind(this);
-        this.delete = this.delete.bind(this);
+        //this.delete = this.delete.bind(this);
        // this.nextId = this.nextId.bind(this);
     }
 
@@ -35,14 +34,8 @@ class TransportsList extends Component {
         }));
     }
 
-    delete(id){
-        this.setState(prevState => ({
-            transports: prevState.transports.filter(transport => transport.id !== id)
-        }))
-    }
-
     eachTransport(item,i){
-        return <Transport key={i} index={item.id} onChange={this.update} onDelete={this.delete}>
+        return <Transport key={i} index={item.id} onChange={this.update} onDelete={this.props.onDelete}>
             <p>{item.id} {item.date} {item.driver} {item.city}</p>
             {/* change button color:ED4D47 and location */}
         </Transport>
@@ -59,15 +52,7 @@ class TransportsList extends Component {
         return(
             <div className="transports-list" >
                 { this.props.list.map(this.eachTransport)}
-                {/* <button onClick={this.add}>Add</button> */}
-                {/* <Fab size="medium" color="secondary" aria-label="add" onClick={this.add} variant="round">
-                    <AddICon/>
-                </Fab>
-                <Fab size="large" color="secondary" aria-label="add" onClick={this.add} variant="extended">
-                    <AddICon/>Add Transport
-                </Fab> */}
             </div>
-
             // <div style={ SceneStyle }>
             //     <div className="transports-list">
             //         { this.props.list.map(this.eachTransport)}      

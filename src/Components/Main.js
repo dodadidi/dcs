@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import transportsData from '../Data/transports.json';
 import TransportsList from './TransportsList';
-
+import NewTransport from './NewTransportForm';
 
 class Main extends Component{
     constructor(props){
@@ -9,26 +9,54 @@ class Main extends Component{
         this.state = {
             transports: []
         }
+    this.delete = this.delete.bind(this);
+    this.add = this.add.bind(this);
+    this.nextId = this.nextId.bind(this);
+
+    //this.update = this.update.bind(this);
     }
     componentDidMount(){
-        transportsData.map(item => this.add({id: item.id, date: item.date, driver: item.driver, city: item.city}));
+        transportsData.map(item => this.add({id: item.id, date: item.date, name: item.name, city: item.city}));
     }
-    add( {id = null, date = 'default title', driver = 'default driver', city = 'default city'} ) {
+    add( {id = null, date = 'default date', name = 'default name', city = 'default city'} ) {
         this.setState(prevState => ({
         transports: [
             ...prevState.transports, {
                 id: id !== null ? id : this.nextId(prevState.transports),
                 date: date,
-                driver: driver,
+                name: name,
                 city: city
             }]
         }))
+    }
+    
+
+    delete(id){
+        this.setState(prevState => ({
+            transports: prevState.transports.filter(transport => transport.id !== id)
+        }))
+    }
+
+    // update(newTransport, i){
+    //     console.log(`Update ${i}: newTransport: ${newTransport}`);
+
+    //     this.setState(prevState => ({
+    //         transports: prevState.transports.map(
+    //             transport => transport.id !== i ? transport : {...transport, transport: newTransport}
+    //         )
+    //     }));
+    // }
+
+    nextId(transports = []) {
+        let max = transports.reduce((prev, curr) => prev.id > curr.id ? prev.id : curr.id , 0);
+        return ++max;
     }
 
     render(){
         return (
             <div>
-                <TransportsList list={this.state.transports}></TransportsList>
+                <TransportsList list={this.state.transports} onDelete={this.delete}></TransportsList>
+                <NewTransport onChange={this.update} onSave={this.add}></NewTransport>
             </div>
         );
     }

@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 //import ReactRouter from './Router/router';
 import Truck from './Components/Truck';
 import Main from './Components/Main';
-//import NewTransport from './Components/NewTransportForm';
+// import NewTransport from './Components/NewTransportForm';
 
 
 

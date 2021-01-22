@@ -29,7 +29,8 @@ class Transport extends Component {
         })
     }
 
-    delete(){
+    delete(e){
+        console.log(`delete:`);
         this.props.onDelete(this.props.index);
     }
 
