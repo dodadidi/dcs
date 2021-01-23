@@ -49,9 +49,9 @@ class Transport extends Component {
 
     renderUI() {
         return (
-            <div style={{padding: "5px", marginTop: "10px"}}>
+            <div style={{   marginBottom: "14px"}}>
                 <div>
-                <p>{this.props.currentTransport.id} {this.props.currentTransport.date} {this.props.currentTransport.name} {this.props.currentTransport.city}</p>
+                <p>{this.props.currentTransport.id}{'\t'}{this.props.currentTransport.date}{'\t'}{this.props.currentTransport.name}{'\t'}{this.props.currentTransport.city}</p>
                 </div>
                 <div className="button">
                     <IconButton aria-label="edit" className="btn btn-primary" style={{backgroundColor:'#ED4D47',color:'white'}} onClick={this.edit}>

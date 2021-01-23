@@ -13,9 +13,10 @@ class Main extends Component{
     this.delete = this.delete.bind(this);
     this.add = this.add.bind(this);
     this.nextId = this.nextId.bind(this);
+    
     this.transportSelected = this.transportSelected.bind(this);
 
-    //this.update = this.update.bind(this);
+    this.update = this.update.bind(this);
     }
     componentDidMount(){
         transportsData.map(item => this.add({id: item.id, date: item.date, name: item.name, city: item.city}));
@@ -40,28 +41,32 @@ class Main extends Component{
         }))
     }
 
-    // update(newTransport, i){
-    //     console.log(`Update ${i}: newTransport: ${newTransport}`);
-
-    //     this.setState(prevState => ({
-    //         transports: prevState.transports.map(
-    //             transport => transport.id !== i ? transport : {...transport, transport: newTransport}
-    //         )
-    //     }));
-    // }
+    update(newTransport){
+        //console.log(`Update ${i}: newTransport: ${newTransport}`);
+        console.log(newTransport);
+        this.setState(prevState => ({
+            transports: prevState.transports.map(
+                transport => transport.id !== newTransport.id ? transport : newTransport
+            )
+        }));
+    }
 
     nextId(transports = []) {
         let max = transports.reduce((prev, curr) => prev.id > curr.id ? prev.id : curr.id , 0);
         return ++max;
     }
-    transportSelected(transport){
-        this.setState({selectedTransport:transport});
+    transportSelected = (transport) =>{
+        console.log(transport);
+        this.setState({selectedTransport:transport},()=>{
+            console.log(this.state.selectedTransport);
+        });
+       
     }
     render(){
         return (
             <div className="background">
                 <TransportsList list={this.state.transports} onDelete={this.delete} onSelectedUpdate={this.transportSelected}></TransportsList>
-                <NewTransport selectedTransport={this.state.selectedTransport} onSave={this.add}></NewTransport>
+                <NewTransport selectedTransport={this.state.selectedTransport} onSave={this.add} onUpdate={this.update}></NewTransport>
             </div>
         );
     }

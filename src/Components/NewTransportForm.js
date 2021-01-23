@@ -18,38 +18,33 @@ class NewTransport extends Component {
         this.renderSave = this.renderSave.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
     }
-    componentDidMount(){
-        //if(prevProps.selectedTransport !== this.props.selectedTransport){
-        // if(this.props.selectedTransport){
-        //     this.setState({
-        //         selectedTransport:this.props.selectedTransport})
-        //         this.setState({id:this.props.selectedTransport.id,
-        //             date:this.props.selectedTransport.date,
-        //             name:this.props.selectedTransport.name,
-        //             city:this.props.selectedTransport.city});
-        // }  
-        
-       // }
-    }
-    componentDidUpdate(prevProps){
-        // if(prevProps.selectedTransport !== this.props.selectedTransport){
-        //     this.setState({
-        //     selectedTransport:this.props.selectedTransport})
-        //     this.setState({id:this.props.selectedTransport.id,
-        //         date:this.props.selectedTransport.date,
-        //         name:this.props.selectedTransport.name,
-        //         city:this.props.selectedTransport.city});
-        // }
+  
+     componentDidUpdate(prevProps){
+        if(prevProps.selectedTransport !== this.props.selectedTransport){
+            console.log(this.props.selectedTransport); 
+            this.setState({id:this.props.selectedTransport.id,
+                date:this.props.selectedTransport.date,
+                name:this.props.selectedTransport.name,
+                city:this.props.selectedTransport.city});
+        }
       
     }
 
     save(e){
         e.preventDefault();
         console.log(this.state);
-        this.props.onSave({id:this.state.id, date: this.state.date,name: this.state.name,city:this.state.city});
-        // this.setState({
-        //     editing: true
-        // })
+        if(this.state.id){
+            this.props.onUpdate({id:this.state.id, date: this.state.date,name: this.state.name,city:this.state.city})
+        this.setState({
+            id:null,
+            date:'',
+            name:'',
+            city:''
+        })
+        } else{
+            this.props.onSave({id:this.state.id, date: this.state.date,name: this.state.name,city:this.state.city});
+        }
+    
     }
 
     onInputChange(event){
@@ -60,10 +55,8 @@ class NewTransport extends Component {
 
     textField={
         width: '400px',
-        height:'60px',
         backgroundColor: 'white',
-        border: '2px solid #ED4D47',
-        marginTop:'14px',
+        marginBottom:'14px',
         borderRadius: '5px',
         fontStyle: 'normal',
         fontWeight: '700',
@@ -85,19 +78,23 @@ class NewTransport extends Component {
     }
 
     renderSave(){
+        const date = this.state.date;
+        const name = this.state.name;
+        const city =  this.state.city;
+        const id = this.state.id ? this.state.id : null;
         return(
             <div>
             <form className="form">
                 <div>
-                <TextField style={this.textField} id="outlined-basic" label="Enter date" name="date"  variant="outlined" onChange={this.onInputChange} defaultValue={this.props.selectedTransport? this.props.selectedTransport.date : ''} />
+                <TextField style={this.textField} error={true }  id="outlined-basic" label="Enter date" name="date"  variant="outlined" onChange={this.onInputChange} value={ date } />
                 </div>
                 <div>
-                <TextField style={this.textField} id="outlined-basic" label="Enter a name" name="name" variant="outlined" onChange={this.onInputChange} defaultValue={this.props.selectedTransport? this.props.selectedTransport.name : ''}  />
+                <TextField style={this.textField} error={true } id="outlined-basic" label="Enter a name" name="name" variant="outlined" onChange={this.onInputChange} value={ name }   />
                 </div>
                 <div>
-                <TextField style={this.textField} id="outlined-basic" label="Enter a city" name="city" variant="outlined" onChange={this.onInputChange} defaultValue={this.props.selectedTransport? this.props.selectedTransport.city : ''}  />
+                <TextField style={this.textField} error={ true } id="outlined-basic" label="Enter a city" name="city" variant="outlined" onChange={this.onInputChange} value= { city }  />
                 </div>
-                <button style={this.buttonForm} onClick={this.save}>save</button>                
+                <button style={this.buttonForm} onClick={this.save}>{id!==null ? 'Update':'Save' }</button>                
             </form>
             </div>
         )
