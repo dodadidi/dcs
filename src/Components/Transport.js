@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { MdSave } from 'react-icons/md';
 
 
 import { IconButton } from '@material-ui/core';
@@ -10,23 +9,21 @@ class Transport extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            editing: false
-        }
+        // this.state = {
+        //     editing: false
+        // }
 
         this.newTransport = "";
         this.edit = this.edit.bind(this);
         this.save = this.save.bind(this);
         this.delete = this.delete.bind(this);
         this.renderUI = this.renderUI.bind(this);
-        this.renderForm = this.renderForm.bind(this);
         this.inputChanged = this.inputChanged.bind(this);
     }
 
     edit(){
-        this.setState({
-            editing: true
-        })
+      
+       this.props.onSelected(this.props.currentTransport)
     }
 
     delete(e){
@@ -50,37 +47,26 @@ class Transport extends Component {
         })
     }
 
-    renderForm() {
-        return (
-            <div>
-            <form>
-                {<textarea onChange={this.inputChanged} value={this.state.newTransport}/>}
-                {/* <textarea ref={input => (this.newTransport = input)}/> */}
-                <button onClick={this.save} style={{marginLeft: 7+'px'}}><MdSave/></button>                
-            </form>
-            </div>
-        )
-    }
-
     renderUI() {
         return (
-            // <div className="transport" style={{border: '1px solid red', padding: "5px", marginTop: "10px"}}>
-            <div className="transport" style={{padding: "5px", marginTop: "10px"}}>
-                <div>{this.props.children}</div>
-                <span>
-                    <IconButton aria-label="edit" className="btn btn-primary" style={{marginRight:7+'px'}} onClick={this.edit}>
+            <div style={{padding: "5px", marginTop: "10px"}}>
+                <div>
+                <p>{this.props.currentTransport.id} {this.props.currentTransport.date} {this.props.currentTransport.name} {this.props.currentTransport.city}</p>
+                </div>
+                <div className="button">
+                    <IconButton aria-label="edit" className="btn btn-primary" style={{backgroundColor:'#ED4D47',color:'white'}} onClick={this.edit}>
                         <EditIcon />
                     </IconButton> 
-                     <IconButton aria-label="delete" className="btn btn-primary" onClick={this.delete}>
+                     <IconButton aria-label="delete" className="btn btn-primary" style={{backgroundColor:'#ED4D47',color:'white',right:'19px',}} onClick={this.delete}>
                         <DeleteIcon />
                     </IconButton>
-                </span>
+                </div>
             </div>            
         )
     }
 
     render() {
-        return this.state.editing ? this.renderForm() : this.renderUI();
+        return this.renderUI();
     }
 }
 export default Transport;

@@ -11,7 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-#root {
-  margin: 1% 5%;
+/* **************** TRANSPORTS LIST *****************/
+.transport-list-box {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 550px;
+  height: 594px;
+  margin-top:  116px;
+  margin-left: 183px;
+  float: left;
 }
+
+.transport-list-box p {
+  font-size: 1.1em;
+  white-space: pre-wrap;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.transport-list-box button {
+  top: -55px;
+  float: right;
+}
+
+/* **************** FORM *****************/
+
+.form{
+  position: absolute;
+  width: 400px;
+  height: 284px;
+  left: 800px;
+  top: 116px;
+}
+
+/* **************** MAIN *****************/
+
+.background{
+  position: absolute;
+  width: 1285px;
+  height: 800px;
+  margin-left : 323px;
+  background-repeat: no-repeat;
+  background-image:  url(./Images/Scene.svg);
+  background-size: cover;
+
+}
+
+.truck{
+  position: relative;
+  margin-top:746.73px;
+}
+
