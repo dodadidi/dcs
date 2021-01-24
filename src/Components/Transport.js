@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,10 +7,6 @@ import EditIcon from '@material-ui/icons/Edit';
 class Transport extends Component {
     constructor(props){
         super(props);
-
-        // this.state = {
-        //     editing: false
-        // }
 
         this.newTransport = "";
         this.edit = this.edit.bind(this);
@@ -27,7 +22,6 @@ class Transport extends Component {
     }
 
     delete(e){
-        console.log(`delete:`);
         this.props.onDelete(this.props.index);
     }
 

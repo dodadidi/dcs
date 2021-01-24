@@ -1,16 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Rubik;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
 /* **************** TRANSPORTS LIST *****************/
 .transport-list-box {
   background: #fff;
@@ -18,22 +11,21 @@ code {
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
   width: 550px;
-  height: 594px;
+  height: 546px;
   margin-top:  116px;
   margin-left: 183px;
   float: left;
 }
 
 .transport-list-box p {
-  font-size: 1.1em;
+  font-size: 1.125rem;
   white-space: pre-wrap;
-  font-size: 18px;
   font-weight: 300;
   line-height: 40px;
 }
 
 .transport-list-box button {
-  top: -55px;
+  top:-55px;
   float: right;
 }
 
@@ -62,6 +54,6 @@ code {
 
 .truck{
   position: relative;
-  margin-top:746.73px;
+  margin-top:720.73px;
 }
 

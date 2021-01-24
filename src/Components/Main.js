@@ -22,7 +22,6 @@ class Main extends Component{
         transportsData.map(item => this.add({id: item.id, date: item.date, name: item.name, city: item.city}));
     }
     add( {id = null, date = 'default date', name = 'default name', city = 'default city'} ) {
-        console.log(date)
         this.setState(prevState => ({
         transports: [
             ...prevState.transports, {
@@ -42,8 +41,6 @@ class Main extends Component{
     }
 
     update(newTransport){
-        //console.log(`Update ${i}: newTransport: ${newTransport}`);
-        console.log(newTransport);
         this.setState(prevState => ({
             transports: prevState.transports.map(
                 transport => transport.id !== newTransport.id ? transport : newTransport
@@ -56,9 +53,7 @@ class Main extends Component{
         return ++max;
     }
     transportSelected = (transport) =>{
-        console.log(transport);
         this.setState({selectedTransport:transport},()=>{
-            console.log(this.state.selectedTransport);
         });
        
     }

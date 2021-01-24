@@ -21,7 +21,6 @@ class NewTransport extends Component {
   
      componentDidUpdate(prevProps){
         if(prevProps.selectedTransport !== this.props.selectedTransport){
-            console.log(this.props.selectedTransport); 
             this.setState({id:this.props.selectedTransport.id,
                 date:this.props.selectedTransport.date,
                 name:this.props.selectedTransport.name,
@@ -32,7 +31,6 @@ class NewTransport extends Component {
 
     save(e){
         e.preventDefault();
-        console.log(this.state);
         if(this.state.id){
             this.props.onUpdate({id:this.state.id, date: this.state.date,name: this.state.name,city:this.state.city})
         this.setState({
@@ -60,7 +58,7 @@ class NewTransport extends Component {
         borderRadius: '5px',
         fontStyle: 'normal',
         fontWeight: '700',
-        fontSize: '18px',
+        fontSize: '1.125em',
     }
 
     buttonForm={
@@ -71,7 +69,7 @@ class NewTransport extends Component {
         width: '158px',
         height: '60px',
         fontWeight: 'bold',
-        fontSize: '16px',
+        fontSize: '1rem',
         marginTop:'16px',
         position: 'absolute',
         left: '115px'
